@@ -14,6 +14,7 @@ import requests
 import sys, time
 from pygame import mixer
 from bs4 import BeautifulSoup
+from termcolor import colored
 from win10toast import ToastNotifier
 
 # Initialized the mixer object
@@ -52,13 +53,13 @@ def get_status():
     global DEFAULT_LTC
     if DEFAULT_LTC < price[2]:
         DEFAULT_LTC = price[2]
-        print('*LTC price increased to {}'.format(price[2]))
+        print(colored('*LTC price increased to {}'.format(price[2]), 'green'))
         alert.play()
         notify(DEFAULT_LTC)
 
 
 def run(RATE):
-    print('Getting Current Status:')
+    print(colored('Getting Current Status:', 'green'))
     print("o_o Watching LTC")
     while True:
         try:
