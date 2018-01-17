@@ -22,7 +22,8 @@ mixer.init()
 alert=mixer.Sound('bell.wav')
 
 # For testing purpose, DEFAULT_LTC is set
-DEFAULT_LTC = float(input('Enter default LTC value: ').split())
+DEFAULT_LTC = float(input('Enter default LTC value: '))
+
 
 def notify(price):
     toast = ToastNotifier()
