@@ -1,0 +1,11 @@
+beautifulsoup4==4.6.0
+bs4==0.0.1
+certifi==2017.11.5
+chardet==3.0.4
+idna==2.6
+pygame==1.9.3
+pypiwin32==220
+requests==2.18.4
+termcolor==1.1.0
+urllib3==1.22
+win10toast==0.8
