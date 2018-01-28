@@ -21,8 +21,14 @@ from win10toast import ToastNotifier
 mixer.init()
 alert=mixer.Sound('bell.wav')
 
-# For testing purpose, DEFAULT_LTC is set
-DEFAULT_LTC = float(input('Enter default LTC value: '))
+DEFAULT_LTC = None
+
+def set_default_price():
+    global DEFAULT_LTC
+    # For testing purpose, DEFAULT_LTC is set
+    CurrentStatus = get_status() 
+    print('Currently LTC price is at {} (INR) '.format(CurrentStatus[2]))
+    DEFAULT_LTC = float(input('Enter LTC price that you want to watch: '))
 
 
 def notify(price):
@@ -40,7 +46,13 @@ def notify(price):
 # What's the current cryptocurrency status, fetch it for me -> get_status()
 def get_status():
     URL = 'https://www.coinome.com/exchange'
-    content = requests.get(URL).content
+    
+    try:
+        content = requests.get(URL).content
+    except:
+        print('Trying to reconnect...')
+        time.sleep(10)
+
     soup = BeautifulSoup(content, 'html.parser')
 
     Currencies = soup.findAll('span', {'class': 'last-market-rate-b'})
@@ -48,27 +60,30 @@ def get_status():
     for currency in Currencies:
         price.append(float(currency.text.replace(',','')))
 
+    return price
+
+# Print the fetched status
+def print_status():
+    global DEFAULT_LTC
+    price = get_status()
     print('-'*80)
     print('BTC: {}, BCH: {}, LTC: {} and DASH: {}'.format(*price))
 
-    global DEFAULT_LTC
     if DEFAULT_LTC < price[2]:
         DEFAULT_LTC = price[2]
-        print(colored('*LTC price increased to {}'.format(price[2]), 'green'))
+        print(colored('*LTC price increased to {}'.format(DEFAULT_LTC), 'green'))
         alert.play()
         notify(DEFAULT_LTC)
 
 
 def run(RATE):
-    print(colored('Getting Current Status:', 'green'))
+    set_default_price()
+    print(colored('\nGetting Current Status:', 'green'))
     print("o_o Watching LTC")
     while True:
-        try:
-            get_status()
-            time.sleep(RATE)
-        except:
-            print('Trying to reconnect...')
-            time.sleep(10)
+        print_status()
+        time.sleep(RATE)
+            
 
 
 def main():
