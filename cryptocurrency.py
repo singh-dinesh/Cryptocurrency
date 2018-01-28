@@ -31,7 +31,7 @@ def notify(price):
     #Title of the notification
     title = 'LTC price rose to {}'.format(price)
 
-    # Description of the notificatio of windows
+    # Description of the notification of windows
     description = 'For best profit, buy if price below 17000'
 
     # Display the notification
@@ -49,7 +49,7 @@ def get_status():
         price.append(float(currency.text.replace(',','')))
 
     print('-'*80)
-    print('BTC: {}, BCH: {} and LTC: {}'.format(*price))
+    print('BTC: {}, BCH: {}, LTC: {} and DASH: {}'.format(*price))
 
     global DEFAULT_LTC
     if DEFAULT_LTC < price[2]:
