@@ -35,10 +35,10 @@ def notify(price):
     toast = ToastNotifier()
 
     #Title of the notification
-    title = 'LTC price rose to {}'.format(price)
+    title = 'LTC price: {}'.format(price)
 
     # Description of the notification of windows
-    description = 'For best profit, buy if price below 17000'
+    description = 'Look, there\'s a change in LTC price!'
 
     # Display the notification
     toast.show_toast(title, description)
