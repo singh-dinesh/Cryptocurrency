@@ -21,15 +21,27 @@ from win10toast import ToastNotifier
 mixer.init()
 alert=mixer.Sound('bell.wav')
 
-DEFAULT_LTC = None
+choice = None
+DEFAULT_CURRENCY = None
+CURRENCIES = {'BTC': 0, 'BCH': 1 , 'LTC': 2, 'DASH': 3}
+
+def set_currency():
+    global choice, DEFAULT_CURRENCY
+    available_currencies = ('BTC', 'BCH', 'LTC', 'DASH')
+    print('Hi! Choose your currency? (BTC/BCH/LTC/DASH) >>', end=' ')
+    choice = input().strip().upper()
+    if choice in available_currencies:
+        DEFAULT_CURRENCY = 0.0
+
 
 def set_default_price():
-    global DEFAULT_LTC
-    # For testing purpose, DEFAULT_LTC is set
-    CurrentStatus = get_status() 
-    print('Currently LTC price is at {} (INR) '.format(CurrentStatus[2]))
-    DEFAULT_LTC = float(input('Enter LTC price that you want to watch: '))
-
+    global DEFAULT_CURRENCY
+    # For testing purpose, DEFAULT_CURRENCY is set
+    current_status = get_status()
+    choice_index = CURRENCIES.get(choice)
+    print('Currently {} price is at {} (INR) '.format(choice, current_status[choice_index]))
+    DEFAULT_CURRENCY = float(input('Enter {} price that you want to watch: '.format(choice)))
+    
 
 def notify(price):
     toast = ToastNotifier()
@@ -64,19 +76,20 @@ def get_status():
 
 # Print the fetched status
 def print_status():
-    global DEFAULT_LTC
+    global DEFAULT_CURRENCY
     price = get_status()
     print('-'*80)
     print('BTC: {}, BCH: {}, LTC: {} and DASH: {}'.format(*price))
 
-    if DEFAULT_LTC < price[2]:
-        DEFAULT_LTC = price[2]
-        print(colored('*LTC price increased to {}'.format(DEFAULT_LTC), 'green'))
+    if DEFAULT_CURRENCY < price[2]:
+        DEFAULT_CURRENCY = price[2]
+        print(colored('*LTC price increased to {}'.format(DEFAULT_CURRENCY), 'green'))
         alert.play()
-        notify(DEFAULT_LTC)
+        notify(DEFAULT_CURRENCY)
 
 
 def run(RATE):
+    set_currency()
     set_default_price()
     print(colored('\nGetting Current Status:', 'green'))
     print("o_o Watching LTC")
