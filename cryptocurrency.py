@@ -41,7 +41,7 @@ def set_default_price():
     choice_index = CURRENCIES.get(choice)
     print('Currently {} price is at {} (INR) '.format(choice, current_status[choice_index]))
     DEFAULT_CURRENCY = float(input('Enter {} price that you want to watch: '.format(choice)))
-    
+
 
 def notify(price):
     toast = ToastNotifier()
@@ -52,13 +52,16 @@ def notify(price):
     # Description of the notification of windows
     description = 'Look, there\'s a change in {} price!'.format(choice)
 
+    # Notification icon
+    icon = './icon.ico'
+
     # Display the notification
-    toast.show_toast(title, description)
+    toast.show_toast(title, description, icon)
 
 # What's the current cryptocurrency status, fetch it for me -> get_status()
 def get_status():
     URL = 'https://www.coinome.com/exchange'
-    
+  
     try:
         content = requests.get(URL).content
     except:
@@ -70,7 +73,7 @@ def get_status():
     Currencies = soup.findAll('span', {'class': 'last-market-rate-b'})
     price = []
     for currency in Currencies:
-        price.append(float(currency.text.replace(',','')))
+        price.append(float(currency.text.replace(',', '')))
 
     return price
 
@@ -91,8 +94,8 @@ def print_status():
 def run(RATE):
     set_currency()
     set_default_price()
-    print(colored('\nGetting Current Status:', 'green'))
-    print("o_o Watching LTC")
+    print(colored('\n\nGetting Current Status:', 'green'))
+    print("o_o Watching LTC\n")
     while True:
         print_status()
         time.sleep(RATE)
