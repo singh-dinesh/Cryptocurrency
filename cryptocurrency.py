@@ -81,12 +81,14 @@ def get_status():
 def print_status():
     global DEFAULT_CURRENCY
     price = get_status()
+    choice_index = CURRENCIES.get(choice)
+    currency_current_price = price[choice_index]
     print('-'*80)
     print('BTC: {}, BCH: {}, LTC: {} and DASH: {}'.format(*price))
 
-    if DEFAULT_CURRENCY < price[2]:
-        DEFAULT_CURRENCY = price[2]
-        print(colored('*LTC price increased to {}'.format(DEFAULT_CURRENCY), 'green'))
+    if DEFAULT_CURRENCY < currency_current_price:
+        DEFAULT_CURRENCY = currency_current_price
+        print(colored('*{} price increased to {}'.format(choice, DEFAULT_CURRENCY), 'green'))
         alert.play()
         notify(DEFAULT_CURRENCY)
 
