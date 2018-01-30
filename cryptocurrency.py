@@ -50,7 +50,7 @@ def notify(price):
     title = 'LTC price: {}'.format(price)
 
     # Description of the notification of windows
-    description = 'Look, there\'s a change in LTC price!'
+    description = 'Look, there\'s a change in {} price!'.format(choice)
 
     # Display the notification
     toast.show_toast(title, description)
@@ -97,7 +97,6 @@ def run(RATE):
         print_status()
         time.sleep(RATE)
             
-
 
 def main():
     try:
