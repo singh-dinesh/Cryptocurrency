@@ -47,16 +47,19 @@ def notify(price):
     toast = ToastNotifier()
 
     #Title of the notification
-    title = 'LTC price: {}'.format(price)
+    title = ' {} rose to: Rs {}'.format(choice, DEFAULT_CURRENCY)
 
     # Description of the notification of windows
-    description = 'Look, there\'s a change in {} price!'.format(choice)
+    description = 'Current Prices: (In INR)\n\
+BTC : {}  \t    BCH : {}  \n\
+LTC : {}  \t    BCH : {}  \
+    '.format(*price)
 
     # Notification icon
     icon = './icon.ico'
 
     # Display the notification
-    toast.show_toast(title, description, icon)
+    toast.show_toast(title, description, icon, 20)
 
 # What's the current cryptocurrency status, fetch it for me -> get_status()
 def get_status():
@@ -90,14 +93,14 @@ def print_status():
         DEFAULT_CURRENCY = currency_current_price
         print(colored('*{} price increased to {}'.format(choice, DEFAULT_CURRENCY), 'green'))
         alert.play()
-        notify(DEFAULT_CURRENCY)
+        notify(price)
 
 
 def run(RATE):
     set_currency()
     set_default_price()
     print(colored('\n\nGetting Current Status:', 'green'))
-    print("o_o Watching LTC\n")
+    print("o_o Watching {}\n".format(choice))
     while True:
         print_status()
         time.sleep(RATE)
