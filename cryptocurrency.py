@@ -19,7 +19,7 @@ from win10toast import ToastNotifier
 
 # Initialized the mixer object
 mixer.init()
-alert=mixer.Sound('bell.wav')
+alert=mixer.Sound('./assets/bell.wav')
 
 choice = None
 DEFAULT_CURRENCY = None
@@ -56,7 +56,7 @@ LTC : {}  \t    BCH : {}  \
     '.format(*price)
 
     # Notification icon
-    icon = './icon.ico'
+    icon = './assets/icon.ico'
 
     # Display the notification
     toast.show_toast(title, description, icon, 20)
