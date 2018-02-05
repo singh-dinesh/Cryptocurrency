@@ -59,7 +59,7 @@ LTC : {}  \t    BCH : {}  \
     icon = './assets/icon.ico'
     
     # Time period of the notification
-    time = 10
+    time = 20
 
     # Display the notification
     toast.show_toast(title, description, icon, time)
