@@ -14,7 +14,6 @@ import requests
 import sys, time
 from pygame import mixer
 from bs4 import BeautifulSoup
-from termcolor import colored
 from win10toast import ToastNotifier
 
 # Initialized the mixer object
@@ -94,7 +93,7 @@ def print_status():
 
     if DEFAULT_CURRENCY < currency_current_price:
         DEFAULT_CURRENCY = currency_current_price
-        print(colored('*{} price increased to {}'.format(choice, DEFAULT_CURRENCY), 'green'))
+        print('*{} price increased to {}'.format(choice, DEFAULT_CURRENCY))
         alert.play()
         notify(price)
 
@@ -102,7 +101,7 @@ def print_status():
 def run(RATE):
     set_currency()
     set_default_price()
-    print(colored('\n\nGetting Current Status:', 'green'))
+    print('\n\nGetting Current Status:')
     print("o_o Watching {}\n".format(choice))
     while True:
         print_status()
