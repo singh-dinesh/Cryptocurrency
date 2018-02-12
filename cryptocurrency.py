@@ -56,9 +56,12 @@ LTC : {}  \t    BCH : {}  \
 
     # Notification icon
     icon = './assets/icon.ico'
+    
+    # Time period of the notification
+    time = 20
 
     # Display the notification
-    toast.show_toast(title, description, icon, 20)
+    toast.show_toast(title, description, icon, time)
 
 # What's the current cryptocurrency status, fetch it for me -> get_status()
 def get_status():
