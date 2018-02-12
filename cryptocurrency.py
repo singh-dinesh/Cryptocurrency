@@ -35,7 +35,6 @@ def set_currency():
 
 def set_default_price():
     global DEFAULT_CURRENCY
-    # For testing purpose, DEFAULT_CURRENCY is set
     current_status = get_status()
     choice_index = CURRENCIES.get(choice)
     print('Currently {} price is at {} (INR) '.format(choice, current_status[choice_index]))
@@ -51,7 +50,7 @@ def notify(price):
     # Description of the notification of windows
     description = 'Current Prices: (In INR)\n\
 BTC : {}  \t    BCH : {}  \n\
-LTC : {}  \t    BCH : {}  \
+LTC : {}  \t    DASH : {}  \
     '.format(*price)
 
     # Notification icon
