@@ -50,7 +50,8 @@ def notify(price):
     # Description of the notification of windows
     description = 'Current Prices: (In INR)\n\
 BTC : {}  \t    BCH : {}  \n\
-LTC : {}  \t    DASH : {}
+LTC : {}  \t    DASH : {} \n\
+DGB : {} \
     '.format(*price)
 
     # Notification icon
