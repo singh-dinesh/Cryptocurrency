@@ -22,12 +22,12 @@ alert=mixer.Sound('./assets/bell.wav')
 
 choice = None
 DEFAULT_CURRENCY = None
-CURRENCIES = {'BTC': 0, 'BCH': 1 , 'LTC': 2, 'DASH': 3, 'DGB': 4}
+CURRENCIES = {'BTC': 0, 'BCH': 1 , 'LTC': 2, 'DASH': 3, 'DGB': 4, 'ZEC'}
 
 def set_currency():
     global choice, DEFAULT_CURRENCY
-    available_currencies = ('BTC', 'BCH', 'LTC', 'DASH', 'DGB')
-    print('Hi! Choose your currency? (BTC/BCH/LTC/DASH/DGB) >>', end=' ')
+    available_currencies = ('BTC', 'BCH', 'LTC', 'DASH', 'DGB', 'ZEC')
+    print('Hi! Choose your currency? (BTC/BCH/LTC/DASH/DGB/ZEC) >>', end=' ')
     choice = input().strip().upper()
     if choice in available_currencies:
         DEFAULT_CURRENCY = 0.0
@@ -51,7 +51,7 @@ def notify(price):
     description = 'Current Prices: (In INR)\n\
 BTC : {}  \t    BCH : {}  \n\
 LTC : {}  \t    DASH : {} \n\
-DGB : {} \
+DGB : {}  \t    ZEC : {} \
     '.format(*price)
 
     # Notification icon
@@ -89,7 +89,7 @@ def print_status():
     choice_index = CURRENCIES.get(choice)
     currency_current_price = price[choice_index]
     print('-'*80)
-    print('BTC: {}, BCH: {}, LTC: {}, DASH: {} and DGB: {}'.format(*price))
+    print('BTC: {}, BCH: {}, LTC: {}, DASH: {}, DGB: {} and ZEC: {}'.format(*price))
 
     if DEFAULT_CURRENCY < currency_current_price:
         DEFAULT_CURRENCY = currency_current_price
