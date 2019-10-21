@@ -7,5 +7,5 @@ pygame==1.9.3
 pypiwin32==220
 requests==2.18.4
 termcolor==1.1.0
-urllib3==1.22
+urllib3==1.24.2
 win10toast==0.8
