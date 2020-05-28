@@ -5,7 +5,7 @@ chardet==3.0.4
 idna==2.6
 pygame==1.9.3
 pypiwin32==220
-requests==2.18.4
+requests==2.20.0
 termcolor==1.1.0
 urllib3==1.24.2
 win10toast==0.8
